@@ -3,18 +3,32 @@
         <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
             <div class="card-header text-center">Agregar Medicamento</div>
             <div class="card-body">
-                <input type="email" class="form-control mt-1" placeholder="Ingrese nombre">
-                <input type="email" class="form-control mt-1" placeholder="Ingrese descripción">
-                <input type="email" class="form-control mt-1" placeholder="Ingrese precio">
-                <input type="email" class="form-control mt-1" placeholder="Ingrese stock">
-                <div class="row">
-                    <div class="col-lg-6 mt-2 text-center">
-                        <button routerLink="/mainmenu/medicamentos/" type="button" class="btn btn-info">Volver</button>
+                <form [formGroup]="formDrug" (ngSubmit)="addDrug()">
+                    <input formControlName="name" type="text" class="form-control mt-1" placeholder="Ingrese nombre">
+                    <span *ngIf="formDrug.get('name')?.hasError('required') && formDrug.get('name')?.touched">
+                        El campo nombre es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="description" type="text" class="form-control mt-1" placeholder="Ingrese descripción">
+                    <span *ngIf="formDrug.get('description')?.hasError('required') && formDrug.get('description')?.touched">
+                        El campo descripción es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="price" type="number" class="form-control mt-1" placeholder="Ingrese precio">
+                    <span *ngIf="formDrug.get('price')?.hasError('required') && formDrug.get('price')?.touched">
+                        El campo precio es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="stock" type="number" class="form-control mt-1" placeholder="Ingrese stock">
+                    <span *ngIf="formDrug.get('stock')?.hasError('required') && formDrug.get('stock')?.touched">
+                        El campo stock es <strong>requerido</strong>
+                    </span>
+                    <div class="row">
+                        <div class="col-lg-6 mt-2 text-center">
+                            <button routerLink="/mainmenu/medicamentos/" type="button" class="btn btn-info">Volver</button>
+                        </div>
+                        <div class="col-lg-6 mt-2 text-center">
+                            <button [disabled]="formDrug.invalid" type="submit" class="btn btn-success">Aceptar</button>              
+                        </div>
                     </div>
-                    <div class="col-lg-6 mt-2 text-center">
-                        <button type="button" class="btn btn-success">Aceptar</button>              
-                    </div>
-                </div>
-    </div>
-</div>
+                </form>
+            </div>
+        </div>
 
