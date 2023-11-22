@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import routeDrug from '../routes/routeDrug';
+import database from '../database/connectionDB';
 
 class Server {
     private app: Application;
@@ -11,6 +12,7 @@ class Server {
         this.listen();
         this.midlewares();
         this.routes();
+        this.databaseConnect();
     }
 
     listen() {
@@ -29,7 +31,21 @@ class Server {
     }
 
     midlewares () {
+
         this.app.use(express.json());
+    
+    }
+
+    async databaseConnect () {
+        
+        try {
+            await database.authenticate();
+            console.log("database connected")
+        } catch (error) {
+            console.log(error)
+            console.log('Error connection to the database')
+        }
+
     }
 
 }
