@@ -1,52 +1,87 @@
-import {Request, Response, request} from 'express';
+import {Request, Response} from 'express';
+import Drug from '../models/drug';
 
-export const getDrugs = (req: Request, res: Response) => {
+export const getDrugs = async (req: Request, res: Response) => {
+    
+    const listDrugs = await Drug.findAll()
 
-    res.json({
-        text: 'get list of Drugs'
-    })
+    res.json(listDrugs)
 }
 
-export const getDrug = (req: Request, res: Response) => {
+export const getDrug = async (req: Request, res: Response) => {
     
     const { id } = req.params;
+    const drug = await Drug.findByPk(id);
 
-    res.json({
-        text: 'get Drug',
-        id
-    })
+    if (drug) {
+        res.json(drug);
+    } else {
+        res.status(404).json({ 
+            msg: `Not able to locate drug with id ${id}`
+        });
+    }
 }
 
-export const deleteDrug = (req: Request, res: Response) => {
+export const deleteDrug = async (req: Request, res: Response) => {
     
     const { id } = req.params;
+    const drug = await Drug.findByPk(id);
 
-    res.json({
-        text: 'delete Drug',
-        id
-    })
+    if(!drug) {
+        res.status(404).json({
+            msg: `No drug found with the id of ${id}`
+            })
+    } else {
+        await drug.destroy();
+        res.json({
+            msg: "Successfully deleted"
+            })
+    }
 }
 
-export const postDrug = (req: Request, res: Response) => {
+export const postDrug = async (req: Request, res: Response) => {
     
     const { body } = req;
 
-    res.json({
-        text: 'save Drug',
-        body
-    })
+    try {
+        await Drug.create(body);
+
+        res.json({
+            msg: "Successfully created"
+            })
+    } catch (error){
+        console.log(error);
+        res.json({
+            msg: 'Ups, get in touch with support'
+        })
+    }
 }
 
-export const putDrug = (req: Request, res: Response) => {
+export const putDrug = async (req: Request, res: Response) => {
 
     const { id } = req.params;
     const { body } = req;
 
-    console.log(body)
-    res.json({
-        text: 'update Drug',
-        id,
-        body
-    })
+    const drug = await Drug.findByPk(id);
+
+    try{
+        if(drug){
+            await drug.update(body);
+            res.json({
+                msg: "Successfully updated"
+                })
+        } else {
+            res.status(404).json({
+                msg: `No drug found with the id of ${id}`
+                })
+        }
+
+        } catch (error) {
+            console.log(error);
+            res.json({
+                msg: 'Ups, get in touch with support'
+            })
+        }
+
 }
 
