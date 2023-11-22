@@ -1,5 +1,5 @@
-import express, { Application } from 'express';
-
+import express, { Application, Request, Response } from 'express';
+import routeDrug from '../routes/routeDrug';
 
 class Server {
     private app: Application;
@@ -7,8 +7,10 @@ class Server {
     
     constructor() {
         this.app = express();
-        this.port = "7777"
+        this.port = process.env.PORT || '7878';
         this.listen();
+        this.midlewares();
+        this.routes();
     }
 
     listen() {
@@ -16,6 +18,20 @@ class Server {
             console.log(`Server is running on por ${this.port}`)
         })
     }
+
+    routes() {
+        this.app.get('/', (req: Request, res: Response) => {
+            res.json({
+                msg: 'Hello World'
+            })
+        })
+        this.app.use('/api/drugs', routeDrug)
+    }
+
+    midlewares () {
+        this.app.use(express.json());
+    }
+
 }
 
 export default Server;
