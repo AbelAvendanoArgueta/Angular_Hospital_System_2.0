@@ -13,6 +13,7 @@ export class ListDrugsComponent implements OnInit {
     // {id: 1, name: "Panadol", description: "Para dolor de cabeza", price: 4, stock: 200},
     // {id: 2, name: "Mentas", description: "Dulces", price: 1, stock: 500}
   ]
+  loading: boolean = false;
 
   constructor(private _drugService: DrugService){
 
@@ -28,8 +29,20 @@ export class ListDrugsComponent implements OnInit {
   }
 
   getListDrugs() {
-    this._drugService.getListDrugs().subscribe((data) => {
+
+    this.loading = true;
+
+    this._drugService.getListDrugs().subscribe((data: Drug[]) => {
       this.listDrugs = data;
+      this.loading = false;
+    })
+
+  }
+
+  deleteDrug(id: number) {
+    this.loading = true
+    this._drugService.deleteDrug(id).subscribe(data => {
+      this.getListDrugs();
     })
   }
 

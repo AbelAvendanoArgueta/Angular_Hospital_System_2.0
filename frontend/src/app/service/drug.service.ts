@@ -20,4 +20,8 @@ export class DrugService {
    getListDrugs(): Observable<Drug[]> {
     return this.http.get<Drug[]>(`${this.myAppDrugUrl}${this.myApiDrugUrl}`);
    }
+
+   deleteDrug(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}${id}`);
+   }
 }
