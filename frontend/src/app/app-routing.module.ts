@@ -7,8 +7,8 @@ import { AddEditDrugComponent } from './components/add-edit-drug/add-edit-drug.c
 
 const routes: Routes = [
   { path: '', component: ListDrugsComponent},
-  { path: 'mainmenu/medicamentos/add', component: AddEditDrugComponent },
-  { path: 'mainmenu/medicamentos/edit/:id', component: AddEditDrugComponent },
+  { path: 'mainmenu/drugs/add', component: AddEditDrugComponent },
+  { path: 'mainmenu/drugs/edit/:id', component: AddEditDrugComponent },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

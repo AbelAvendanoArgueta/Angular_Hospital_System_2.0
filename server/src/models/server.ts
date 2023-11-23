@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
 import routeDrug from '../routes/routeDrug';
 import database from '../database/connectionDB';
 
@@ -27,12 +28,16 @@ class Server {
                 msg: 'Hello World'
             })
         })
-        this.app.use('/api/drugs', routeDrug)
+        this.app.use('/api/mainmenu/drugs', routeDrug)
     }
 
     midlewares () {
 
+        // Parseamos el body
         this.app.use(express.json());
+
+        // Cors
+        this.app.use(cors());
     
     }
 
