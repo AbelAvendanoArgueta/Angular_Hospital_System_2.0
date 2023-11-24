@@ -38,7 +38,6 @@ export class ListDrugsComponent implements OnInit {
       this.listDrugs = data;
       this.loading = false;
     })
-
   }
 
   deleteDrug(id: number) {

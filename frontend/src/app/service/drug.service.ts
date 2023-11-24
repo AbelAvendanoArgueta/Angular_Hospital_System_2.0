@@ -26,7 +26,14 @@ export class DrugService {
    }
 
    saveDrug(drug: Drug): Observable<void> {
-    return this.http.post<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}`, drug)
+    return this.http.post<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}`, drug);
+   }
 
+   editDrug(id: number): Observable<Drug> {
+    return this.http.get<Drug>(`${this.myAppDrugUrl}${this.myApiDrugUrl}${id}`);
+   }
+
+   updateDrug(id: number, drug:Drug):  Observable<void> {
+    return this.http.put<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}${id}`, drug);
    }
 }
