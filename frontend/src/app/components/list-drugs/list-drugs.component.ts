@@ -30,19 +30,28 @@ export class ListDrugsComponent implements OnInit {
     this.getListDrugs();
   }
 
+  // Function to get the list of drugs
   getListDrugs() {
 
     this.loading = true;
 
+    // Subscribe to the getListDrugs method of the DrugService
+    // This method makes an HTTP request to get the list of drugs
     this._drugService.getListDrugs().subscribe((data: Drug[]) => {
+      // Update the listDrugs array with the fetched data
       this.listDrugs = data;
       this.loading = false;
     })
   }
 
+  // Function to delete a drug by ID
   deleteDrug(id: number) {
     this.loading = true
+
+    // Subscribe to the deleteDrug method of the DrugService
+    // This method makes an HTTP request to delete a drug by ID
     this._drugService.deleteDrug(id).subscribe(data => {
+      // After deletion, refresh the list of drugs
       this.getListDrugs();
       this.toastr.warning('El medicamento fue eliminado con éxito', 'Medicamento eliminado');
     })
