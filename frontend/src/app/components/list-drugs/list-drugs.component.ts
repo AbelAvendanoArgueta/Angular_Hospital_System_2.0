@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { timeout } from 'rxjs';
 import { Drug } from 'src/app/interfaces/drug'
 import { DrugService } from 'src/app/service/drug.service';
 
@@ -15,7 +17,7 @@ export class ListDrugsComponent implements OnInit {
   ]
   loading: boolean = false;
 
-  constructor(private _drugService: DrugService){
+  constructor(private _drugService: DrugService, private toastr: ToastrService){
 
   }
 
@@ -43,6 +45,7 @@ export class ListDrugsComponent implements OnInit {
     this.loading = true
     this._drugService.deleteDrug(id).subscribe(data => {
       this.getListDrugs();
+      this.toastr.warning('El medicamento fue eliminado con éxito', 'Medicamento eliminado');
     })
   }
 

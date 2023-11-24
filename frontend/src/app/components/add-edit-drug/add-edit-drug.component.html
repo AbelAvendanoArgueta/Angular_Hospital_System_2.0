@@ -1,4 +1,8 @@
-<div class="row mt-4">
+<div class="container-fluid mt-3">
+    <app-progress-bar *ngIf="loading"></app-progress-bar>
+</div>
+
+<div *ngIf="!loading" class="row mt-4">
     <div class="col-lg-4 offset-lg-4">
         <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
             <div class="card-header text-center">Agregar Medicamento</div>

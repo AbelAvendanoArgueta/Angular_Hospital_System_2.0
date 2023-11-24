@@ -1,12 +1,20 @@
 <div class="container-fluid mt-3">
   <app-progress-bar *ngIf="loading"></app-progress-bar>
 </div>
+
+<h1 class="text-center">
+  <span class="badge bg-primary">
+    Medicamentos 
+    <img src="https://cdn-icons-png.flaticon.com/128/3595/3595970.png" alt="Imagen" style="width: 12%;">
+  </span>
+</h1>
+
 <div *ngIf="!loading" class="container">
     <div class="title">
         <h4>Listado de Medicamentos</h4>
-        <button type="button" class="btn btn-primary" routerLink="/mainmenu/drugs/add">Agregar Medicamento</button>
+        <button type="button" class="btn btn-info" routerLink="/mainmenu/drugs/add">Agregar Medicamento</button>
     </div>
-    <table class="table table-hover">
+    <table *ngIf="listDrugs.length > 0"  class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -23,11 +31,15 @@
             <td>{{ item.price | currency }}</td>
             <td>{{ item.stock }}</td>
             <th>
-                <button routerLink="/mainmenu/drugs/edit/{{item.id}}" type="button" class="btn btn-success btn-sm">Edit</button>
+                <button routerLink="/mainmenu/drugs/edit/{{item.id}}" type="button" class="btn btn-warning btn-sm">Edit</button>
                 <button (click)="deleteDrug(item.id!)" type="button" class="btn btn-danger btn-sm ms-2">Delete</button>
             </th>
           </tr>
         </tbody>
       </table>
+      <div class="alert alert-dismissible alert-warning mt-3" *ngIf="listDrugs.length == 0">
+        <h4 class="alert-heading">No hay medicamentos!!</h4>
+        <p class="mb-0">No se encontró ningún dato en la base de datos. <a href="#" class="alert-link">Contacte a su administrador</a></p>
+      </div>
 </div>
 

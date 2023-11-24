@@ -24,4 +24,9 @@ export class DrugService {
    deleteDrug(id: number): Observable<void> {
     return this.http.delete<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}${id}`);
    }
+
+   saveDrug(drug: Drug): Observable<void> {
+    return this.http.post<void>(`${this.myAppDrugUrl}${this.myApiDrugUrl}`, drug)
+
+   }
 }
