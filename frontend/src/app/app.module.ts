@@ -16,9 +16,19 @@ import { ToastrModule } from 'ngx-toastr';
 
 // Import your components
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { ListDrugsComponent } from './components/list-drugs/list-drugs.component';
 import { AddEditDrugComponent } from './components/add-edit-drug/add-edit-drug.component';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import { AddEditDoctorComponent } from './components/add-edit-doctor/add-edit-doctor.component';
+import { ListDoctorsComponent } from './components/list-doctors/list-doctors.component';
+import { ListPatientsComponent } from './components/list-patients/list-patients.component';
+import { AddEditPatientComponent } from './components/add-edit-patient/add-edit-patient.component';
+import { AddEditPrescriptionAppointmentComponent } from './components/add-edit-prescription-appointment/add-edit-prescription-appointment.component';
+import { ListPrescriptionAppointmentsComponent } from './components/list-prescription-appointments/list-prescription-appointments.component';
+import { ListEvaluationsComponent } from './components/list-evaluations/list-evaluations.component';
+import { AddEditEvaluationComponent } from './components/add-edit-evaluation/add-edit-evaluation.component';
+
 
 // NgModule decorator to configure the module
 @NgModule({
@@ -28,7 +38,16 @@ import { ProgressBarComponent } from './shared/progress-bar/progress-bar.compone
     NavbarComponent,
     ListDrugsComponent,
     AddEditDrugComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    MainMenuComponent,
+    AddEditDoctorComponent,
+    ListDoctorsComponent,
+    ListPatientsComponent,
+    AddEditPatientComponent,
+    AddEditPrescriptionAppointmentComponent,
+    ListPrescriptionAppointmentsComponent,
+    ListEvaluationsComponent,
+    AddEditEvaluationComponent
   ],
   imports: [
     // Import and configure necessary modules
