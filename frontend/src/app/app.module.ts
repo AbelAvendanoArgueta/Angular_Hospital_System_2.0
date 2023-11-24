@@ -35,19 +35,19 @@ import { AddEditEvaluationComponent } from './components/add-edit-evaluation/add
   declarations: [
     // Declare all the components used in the module
     AppComponent,
+    ProgressBarComponent,
+    MainMenuComponent,
     NavbarComponent,
     ListDrugsComponent,
     AddEditDrugComponent,
-    ProgressBarComponent,
-    MainMenuComponent,
     AddEditDoctorComponent,
     ListDoctorsComponent,
     ListPatientsComponent,
     AddEditPatientComponent,
     AddEditPrescriptionAppointmentComponent,
     ListPrescriptionAppointmentsComponent,
-    ListEvaluationsComponent,
-    AddEditEvaluationComponent
+    AddEditEvaluationComponent,
+    ListEvaluationsComponent
   ],
   imports: [
     // Import and configure necessary modules

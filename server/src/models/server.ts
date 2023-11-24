@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import routeDrug from '../routes/routeDrug';
+import routeDoctor from '../routes/routeDoctor';
 import database from '../database/connectionDB';
 
 class Server {
@@ -37,6 +38,8 @@ class Server {
         });
         // Use the 'routeDrug' router for the '/api/mainmenu/drugs' endpoint
         this.app.use('/api/mainmenu/drugs', routeDrug);
+
+        this.app.use('/api/mainmenu/doctors', routeDoctor);
     }
 
     // Set up middlewares

@@ -1,1 +1,46 @@
-<p>list-doctors works!</p>
+<div class="container-fluid mt-3">
+    <app-progress-bar *ngIf="loading"></app-progress-bar>
+  </div>
+  
+  <h1 class="text-center">
+    <span class="badge bg-primary">
+      Doctores
+      <img src="https://cdn-icons-png.flaticon.com/128/4807/4807695.png" alt="Imagen" style="width: 12%;">
+    </span>
+  </h1>
+  
+  <div *ngIf="!loading" class="container">
+      <div class="title">
+          <h4>Listado de Doctores</h4>
+          <button type="button" class="btn btn-info" routerLink="/mainmenu/doctors/add">Agregar Doctor</button>
+      </div>
+      <table *ngIf="listDoctors.length > 0"  class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Carnet</th>
+              <th scope="col">Contacto</th>
+              <th scope="col">Descripción</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listDoctors" class="table-info">
+              <td>{{ item.name }}</td>
+              <td>{{ item.carnet }}</td>
+              <td>{{ item.contact }}</td>
+              <td>{{ item.description }}</td>
+              <th>
+                  <button routerLink="/mainmenu/doctors/edit/{{item.id}}" type="button" class="btn btn-warning btn-sm">Edit</button>
+                  <button (click)="deleteDoctor(item.id!)" type="button" class="btn btn-danger btn-sm ms-2">Delete</button>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert alert-dismissible alert-warning mt-3" *ngIf="listDoctors.length == 0">
+          <h4 class="alert-heading">No hay Doctores!!</h4>
+          <p class="mb-0">No se encontró ningún doctor en la base de datos. <a href="#" class="alert-link">Contacte a su administrador</a></p>
+        </div>
+  </div>
+  
+  
