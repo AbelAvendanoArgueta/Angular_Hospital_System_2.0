@@ -9,7 +9,7 @@ const Doctor = database.define('doctor', {
     },
     // Define the 'description' attribute with a data type of STRING
     carnet: {
-        type: DataTypes.NUMBER 
+        type: DataTypes.STRING 
     },
     // Define the 'price' attribute with a data type of DOUBLE
     contact: {   
